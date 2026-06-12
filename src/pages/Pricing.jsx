@@ -23,7 +23,7 @@ export default function Pricing() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const res = await axios.put(`http://localhost:8080/api/subscription/upgrade/${currentUser.id}`);
+      const res = await axios.put(`https://schedulify-backend-dgce.onrender.com/api/subscription/upgrade/${currentUser.id}`);
       
       const updatedUser = res.data;
       localStorage.setItem('user', JSON.stringify(updatedUser));

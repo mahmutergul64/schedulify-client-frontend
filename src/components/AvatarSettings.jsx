@@ -31,7 +31,7 @@ export default function AvatarSettings({ user, onAvatarUpdate }) {
     const toastId = toast.loading("Profil fotoğrafınız yükleniyor...");
 
     try {
-      const res = await axios.post(`http://localhost:8080/api/profile/${user.id}/avatar`, formData);
+      const res = await axios.post(`https://schedulify-backend-dgce.onrender.com/api/profile/${user.id}/avatar`, formData);
       updateLocalStorage(res.data);
       toast.update(toastId, { render: "Fotoğraf başarıyla güncellendi!", type: "success", isLoading: false, autoClose: 3000 });
     } catch (err) {
@@ -46,7 +46,7 @@ export default function AvatarSettings({ user, onAvatarUpdate }) {
     const toastId = toast.loading("Fotoğrafınız siliniyor...");
 
     try {
-      await axios.delete(`http://localhost:8080/api/profile/${user.id}/avatar`);
+      await axios.delete(`https://schedulify-backend-dgce.onrender.com/api/profile/${user.id}/avatar`);
       updateLocalStorage(null);
       toast.update(toastId, { render: "Fotoğraf başarıyla silindi.", type: "success", isLoading: false, autoClose: 3000 });
     } catch (err) {
@@ -60,7 +60,7 @@ export default function AvatarSettings({ user, onAvatarUpdate }) {
       <div className="flex items-center justify-center shrink-0">
         {currentAvatar ? (
           <img 
-            src={`http://localhost:8080/uploads/${currentAvatar}`} 
+            src={`https://schedulify-backend-dgce.onrender.com/uploads/${currentAvatar}`} 
             alt="Profil" 
             className="w-24 h-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-xl shadow-slate-900/10 dark:shadow-black/20"
           />

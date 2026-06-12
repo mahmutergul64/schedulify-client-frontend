@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     const toastId = toast.loading("Giriş yapılıyor...");
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
+      const response = await axios.post('https://schedulify-backend-dgce.onrender.com/api/auth/login', { email, password });
       localStorage.setItem('user', JSON.stringify(response.data));
       toast.update(toastId, { render: "Hoş geldiniz! Yönlendiriliyorsunuz...", type: "success", isLoading: false, autoClose: 2000 });
       

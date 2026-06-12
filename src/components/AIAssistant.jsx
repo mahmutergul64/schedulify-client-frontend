@@ -29,7 +29,7 @@ export default function AIAssistant() {
     setIsLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:8080/api/ai/analyze', { message: userMsg.text });
+      const res = await axios.post('https://schedulify-backend-dgce.onrender.com/api/ai/analyze', { message: userMsg.text });
       const aiMsg = { sender: 'ai', text: res.data.reply, specialty: res.data.specialty };
       setMessages(prev => [...prev, aiMsg]);
     } catch (error) {

@@ -25,7 +25,7 @@ export default function ResetPassword() {
     }
     const toastId = toast.loading("Şifreniz güncelleniyor...");
     try {
-      await axios.post('http://localhost:8080/api/auth/reset-password', { 
+      await axios.post('https://schedulify-backend-dgce.onrender.com/api/auth/reset-password', { 
         token: token, 
         password: password 
       });

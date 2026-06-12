@@ -2,7 +2,7 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
 export const connectNotifications = (userId, onMessageReceived) => {
-  const socket = new SockJS('http://localhost:8080/ws-notify');
+  const socket = new SockJS('https://schedulify-backend-dgce.onrender.com/ws-notify');
   const stompClient = Stomp.over(socket);
   stompClient.connect({}, () => {
     stompClient.subscribe(`/topic/notifications/${userId}`, (message) => {

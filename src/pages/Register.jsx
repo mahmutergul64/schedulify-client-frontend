@@ -18,7 +18,7 @@ export default function Register() {
     e.preventDefault();
     setIsProcessing(true);
     try {
-      await axios.post('http://localhost:8080/api/auth/register', {
+      await axios.post('https://schedulify-backend-dgce.onrender.com/api/auth/register', {
         fullName,
         email,
         password,

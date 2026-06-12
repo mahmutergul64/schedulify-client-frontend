@@ -17,8 +17,8 @@ export default function Home() {
 
   const fetchDoctors = async (keyword = '') => {
     const url = keyword 
-      ? `http://localhost:8080/api/users/search?keyword=${keyword}`
-      : `http://localhost:8080/api/users/providers`;
+      ? `https://schedulify-backend-dgce.onrender.com/api/users/search?keyword=${keyword}`
+      : `https://schedulify-backend-dgce.onrender.com/api/users/providers`;
 
     try {
       const res = await axios.get(url);
@@ -27,7 +27,7 @@ export default function Home() {
       const doctorsWithRatings = await Promise.all(
         doctorsData.map(async (doc) => {
           try {
-            const avgRes = await axios.get(`http://localhost:8080/api/reviews/provider/${doc.id}/average`);
+            const avgRes = await axios.get(`https://schedulify-backend-dgce.onrender.com/api/reviews/provider/${doc.id}/average`);
             const avg = parseFloat(avgRes.data) || 0;
             return { ...doc, averageRating: avg };
           } catch (err) {
@@ -129,7 +129,7 @@ export default function Home() {
                   <div className="flex items-start gap-4 mb-6">
                     {doc.avatarUrl ? (
                       <img 
-                        src={`http://localhost:8080/uploads/${doc.avatarUrl}`} 
+                        src={`https://schedulify-backend-dgce.onrender.com/uploads/${doc.avatarUrl}`} 
                         alt={doc.fullName} 
                         className="w-16 h-16 rounded-2xl object-cover border border-slate-200 dark:border-slate-700 shadow-md shadow-slate-900/5 dark:shadow-black/20 shrink-0 transform group-hover:scale-105 transition-transform duration-300"
                       />

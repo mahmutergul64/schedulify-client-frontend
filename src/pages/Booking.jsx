@@ -42,7 +42,7 @@ export default function Booking() {
       return;
     }
 
-    axios.get(`http://localhost:8080/api/users/providers`)
+    axios.get(`https://schedulify-backend-dgce.onrender.com/api/users/providers`)
       .then(res => {
         const found = res.data.find(d => String(d.id) === String(routeId));
         if (found) {
@@ -110,7 +110,7 @@ export default function Booking() {
         const endHour = String(parseInt(time.split(':')[0]) + 1).padStart(2, '0');
         const end = `${date}T${endHour}:00:00`;
 
-        await axios.post('http://localhost:8080/api/appointments/book', {
+        await axios.post('https://schedulify-backend-dgce.onrender.com/api/appointments/book', {
           clientId: currentUser.id,
           providerId: provider.id,
           startTime: start,
@@ -158,7 +158,7 @@ export default function Booking() {
         <div className="bg-white dark:bg-slate-900/80 backdrop-blur-sm rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-slate-800/80 overflow-hidden animate-fade-in transition-colors">
           <div className="p-8 sm:p-10 border-b border-gray-100 dark:border-slate-800/80 bg-slate-900 dark:bg-slate-800 text-white flex flex-col sm:flex-row items-center gap-6 transition-colors">
             {provider.avatarUrl ? (
-              <img src={`http://localhost:8080/uploads/${provider.avatarUrl}`} alt={provider.fullName} className="w-24 h-24 rounded-full object-cover border-4 border-slate-800 dark:border-slate-700" />
+              <img src={`https://schedulify-backend-dgce.onrender.com/uploads/${provider.avatarUrl}`} alt={provider.fullName} className="w-24 h-24 rounded-full object-cover border-4 border-slate-800 dark:border-slate-700" />
             ) : (
               <div className="w-24 h-24 rounded-full bg-slate-800 dark:bg-slate-700 flex items-center justify-center border-4 border-slate-700 dark:border-slate-600 transition-colors">
                 <span className="text-3xl font-black text-slate-300">{provider.fullName.charAt(0)}</span>

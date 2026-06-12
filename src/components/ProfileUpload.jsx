@@ -8,7 +8,7 @@ export default function ProfileUpload({ userId, onUpload }) {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const res = await axios.post(`http://localhost:8080/api/profile/${userId}/avatar`, formData);
+      const res = await axios.post(`https://schedulify-backend-dgce.onrender.com/api/profile/${userId}/avatar`, formData);
       onUpload(res.data);
     } catch (err) {
       console.error(err);

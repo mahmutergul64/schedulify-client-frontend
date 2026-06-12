@@ -29,7 +29,7 @@ export default function Dashboard() {
 
   const fetchAppointments = () => {
     if (currentUser) {
-      axios.get(`http://localhost:8080/api/appointments/provider/${currentUser.id}`)
+      axios.get(`https://schedulify-backend-dgce.onrender.com/api/appointments/provider/${currentUser.id}`)
         .then(response => setAppointments(response.data))
         .catch(error => console.error(error));
     }
@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   const fetchDoctorProfile = () => {
     if (currentUser) {
-      axios.get(`http://localhost:8080/api/users/providers`)
+      axios.get(`https://schedulify-backend-dgce.onrender.com/api/users/providers`)
         .then(res => {
           const me = res.data.find(d => d.id === currentUser.id);
           if (me) {
@@ -154,7 +154,7 @@ export default function Dashboard() {
     e.preventDefault();
     setIsSavingReport(true);
     try {
-      await axios.put(`http://localhost:8080/api/appointments/${selectedAppForReport.id}/notes`, {
+      await axios.put(`https://schedulify-backend-dgce.onrender.com/api/appointments/${selectedAppForReport.id}/notes`, {
         notes: reportText
       });
       toast.success(tBackend("Seans raporu ve e-reçete başarıyla kaydedildi!"));
@@ -196,7 +196,7 @@ export default function Dashboard() {
     e.preventDefault();
     const toastId = toast.loading("İşleniyor...");
     try {
-      await axios.put(`http://localhost:8080/api/users/${currentUser.id}/profile`, { specialty, bio });
+      await axios.put(`https://schedulify-backend-dgce.onrender.com/api/users/${currentUser.id}/profile`, { specialty, bio });
       toast.update(toastId, { render: tBackend("Profil güncellendi"), type: "success", isLoading: false, autoClose: 3000 });
     } catch (error) {
       toast.update(toastId, { render: tBackend("Bir hata oluştu."), type: "error", isLoading: false, autoClose: 3000 });
@@ -209,7 +209,7 @@ export default function Dashboard() {
 
   const handleConfirm = async (id) => {
     try {
-      await axios.put(`http://localhost:8080/api/appointments/${id}/confirm`);
+      await axios.put(`https://schedulify-backend-dgce.onrender.com/api/appointments/${id}/confirm`);
       toast.success(tBackend("Randevu onaylandı."));
       fetchAppointments();
     } catch (error) {
@@ -219,7 +219,7 @@ export default function Dashboard() {
 
   const handleComplete = async (id) => {
     try {
-      await axios.put(`http://localhost:8080/api/appointments/${id}/complete`);
+      await axios.put(`https://schedulify-backend-dgce.onrender.com/api/appointments/${id}/complete`);
       toast.success(tBackend("Randevu tamamlandı."));
       fetchAppointments();
     } catch (error) {
@@ -230,7 +230,7 @@ export default function Dashboard() {
   const handleDelete = async (id) => {
     if (!window.confirm("Bu randevuyu iptal etmek istediğinizden emin misiniz?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/appointments/${id}`);
+      await axios.delete(`https://schedulify-backend-dgce.onrender.com/api/appointments/${id}`);
       toast.success(tBackend("Randevu iptal edildi."));
       fetchAppointments();
     } catch (error) {
@@ -435,7 +435,7 @@ export default function Dashboard() {
                         <td className="p-5 flex justify-center gap-2 items-center px-4">
                           {app.documentUrl && (
                             <button 
-                              onClick={() => window.open(`http://localhost:8080/uploads/${app.documentUrl}`, '_blank')}
+                              onClick={() => window.open(`https://schedulify-backend-dgce.onrender.com/uploads/${app.documentUrl}`, '_blank')}
                               className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 p-2 rounded-xl transition-all border border-transparent hover:border-purple-200 dark:hover:border-purple-800 flex items-center gap-1 text-xs font-bold"
                             >
                               <Eye className="w-4 h-4" /> {t('dash.view_doc')}

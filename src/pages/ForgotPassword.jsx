@@ -14,7 +14,7 @@ export default function ForgotPassword() {
     const toastId = toast.loading("Sıfırlama linki oluşturuluyor...");
 
     try {
-      await axios.post('http://localhost:8080/api/auth/forgot-password', { email });
+      await axios.post('https://schedulify-backend-dgce.onrender.com/api/auth/forgot-password', { email });
       toast.update(toastId, { render: "Sıfırlama linki e-posta adresinize gönderildi! 📩", type: "success", isLoading: false, autoClose: 5000 });
     } catch (error) {
       const msg = error.response ? error.response.data : "Bir hata oluştu.";

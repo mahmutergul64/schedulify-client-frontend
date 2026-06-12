@@ -25,7 +25,7 @@ export default function Navbar() {
   useEffect(() => {
     if (user) {
       const stompClient = new Client({
-        webSocketFactory: () => new SockJS('http://localhost:8080/ws-notify'),
+        webSocketFactory: () => new SockJS('https://schedulify-backend-dgce.onrender.com/ws-notify'),
         onConnect: () => {
           stompClient.subscribe(`/topic/notifications/${user.id}`, (message) => {
             toast.info(message.body, {
@@ -122,7 +122,7 @@ export default function Navbar() {
                   </div>
                   {user.avatarUrl ? (
                     <img 
-                      src={`http://localhost:8080/uploads/${user.avatarUrl}`} 
+                      src={`https://schedulify-backend-dgce.onrender.com/uploads/${user.avatarUrl}`} 
                       alt="Profile" 
                       className={`w-10 h-10 rounded-full object-cover border-2 ${user.vip ? 'border-amber-400' : 'border-slate-200 dark:border-slate-700'}`}
                     />
@@ -210,7 +210,7 @@ export default function Navbar() {
             <>
               <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl mb-2">
                 {user.avatarUrl ? (
-                  <img src={`http://localhost:8080/uploads/${user.avatarUrl}`} alt="Profile" className="w-12 h-12 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700" />
+                  <img src={`https://schedulify-backend-dgce.onrender.com/uploads/${user.avatarUrl}`} alt="Profile" className="w-12 h-12 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700" />
                 ) : (
                   <div className="w-12 h-12 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 flex items-center justify-center">
                     <User className="w-6 h-6" />

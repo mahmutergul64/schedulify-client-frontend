@@ -35,7 +35,7 @@ export default function MyAppointments() {
 
   const fetchClientAppointments = () => {
     if (currentUser) {
-      axios.get(`http://localhost:8080/api/appointments/client/${currentUser.id}`)
+      axios.get(`https://schedulify-backend-dgce.onrender.com/api/appointments/client/${currentUser.id}`)
         .then(res => setAppointments(res.data))
         .catch(err => console.error(err));
     }
@@ -43,7 +43,7 @@ export default function MyAppointments() {
 
   const fetchHealthMetrics = () => {
     if (currentUser) {
-      axios.get(`http://localhost:8080/api/health-metrics/client/${currentUser.id}`)
+      axios.get(`https://schedulify-backend-dgce.onrender.com/api/health-metrics/client/${currentUser.id}`)
         .then(res => setMetrics(res.data))
         .catch(err => console.error(err));
     }
@@ -61,7 +61,7 @@ export default function MyAppointments() {
   const handleSaveMetric = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8080/api/health-metrics/client/${currentUser.id}`, metricForm);
+      await axios.post(`https://schedulify-backend-dgce.onrender.com/api/health-metrics/client/${currentUser.id}`, metricForm);
       toast.success(tBackend("Sağlık verisi başarıyla kaydedildi!"));
       fetchHealthMetrics();
       setMetricForm({
@@ -83,7 +83,7 @@ export default function MyAppointments() {
     }
     if (!window.confirm("İptal etmek istediğinize emin misiniz?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/appointments/${id}`);
+      await axios.delete(`https://schedulify-backend-dgce.onrender.com/api/appointments/${id}`);
       toast.success(tBackend("Randevu iptal edildi."));
       fetchClientAppointments();
     } catch (error) {
@@ -95,7 +95,7 @@ export default function MyAppointments() {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      await axios.post(`http://localhost:8080/api/appointments/${appId}/upload`, formData, {
+      await axios.post(`https://schedulify-backend-dgce.onrender.com/api/appointments/${appId}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       toast.success(tBackend("Tıbbi belge başarıyla yüklendi!"));
@@ -113,7 +113,7 @@ export default function MyAppointments() {
     }
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:8080/api/reviews/add', {
+      await axios.post('https://schedulify-backend-dgce.onrender.com/api/reviews/add', {
         clientId: currentUser.id,
         providerId: selectedApp.provider.id,
         rating: rating,
@@ -472,7 +472,7 @@ export default function MyAppointments() {
                             <div className="flex items-center gap-3">
                               {app.provider.avatarUrl ? (
                                 <img 
-                                  src={`http://localhost:8080/uploads/${app.provider.avatarUrl}`} 
+                                  src={`https://schedulify-backend-dgce.onrender.com/uploads/${app.provider.avatarUrl}`} 
                                   alt="Provider" 
                                   className="w-10 h-10 rounded-xl object-cover border border-slate-200 dark:border-slate-700"
                                 />
@@ -514,7 +514,7 @@ export default function MyAppointments() {
                                   </label>
                                   {app.documentUrl && (
                                     <button 
-                                      onClick={() => window.open(`http://localhost:8080/uploads/${app.documentUrl}`, '_blank')}
+                                      onClick={() => window.open(`https://schedulify-backend-dgce.onrender.com/uploads/${app.documentUrl}`, '_blank')}
                                       className="bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-800/50 text-purple-700 dark:text-purple-400 font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1 border border-purple-200 dark:border-purple-800/50 transition-all active:scale-95 shadow-sm"
                                     >
                                       <FileText className="w-4 h-4" /> Belgem
@@ -542,7 +542,7 @@ export default function MyAppointments() {
                                 <div className="flex items-center gap-2 justify-center">
                                   {app.documentUrl && (
                                     <button 
-                                      onClick={() => window.open(`http://localhost:8080/uploads/${app.documentUrl}`, '_blank')}
+                                      onClick={() => window.open(`https://schedulify-backend-dgce.onrender.com/uploads/${app.documentUrl}`, '_blank')}
                                       className="bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-800/50 text-purple-700 dark:text-purple-400 font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1 border border-purple-200 dark:border-purple-800/50 transition-all active:scale-95 shadow-sm"
                                     >
                                       <FileText className="w-4 h-4" /> Belge Gör

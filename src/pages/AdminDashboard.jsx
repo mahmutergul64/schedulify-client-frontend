@@ -26,9 +26,9 @@ export default function AdminDashboard() {
 
   const fetchSystemData = async () => {
     try {
-      const usersRes = await axios.get('http://localhost:8080/api/users');
+      const usersRes = await axios.get('https://schedulify-backend-dgce.onrender.com/api/users');
       setUsers(usersRes.data);
-      const appRes = await axios.get('http://localhost:8080/api/appointments');
+      const appRes = await axios.get('https://schedulify-backend-dgce.onrender.com/api/appointments');
       setAppointments(appRes.data);
     } catch (error) {
       toast.error("Veriler çekilemedi.");
@@ -82,7 +82,7 @@ export default function AdminDashboard() {
   const handleDeleteUser = async (id) => {
     if (!window.confirm("Kullanıcı silinsin mi?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/users/${id}`);
+      await axios.delete(`https://schedulify-backend-dgce.onrender.com/api/users/${id}`);
       toast.success("Kullanıcı silindi.");
       fetchSystemData();
     } catch (error) {

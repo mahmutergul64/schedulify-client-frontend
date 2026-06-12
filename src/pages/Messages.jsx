@@ -24,7 +24,7 @@ export default function Messages() {
       return;
     }
 
-    axios.get(`http://localhost:8080/api/users/${currentUser.id}/contacts`)
+    axios.get(`https://schedulify-backend-dgce.onrender.com/api/users/${currentUser.id}/contacts`)
       .then(res => {
         setContacts(res.data);
         setFilteredContacts(res.data);
@@ -32,7 +32,7 @@ export default function Messages() {
       .catch(err => console.error(err));
 
     const client = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:8080/ws'),
+      webSocketFactory: () => new SockJS('https://schedulify-backend-dgce.onrender.com/ws'),
       onConnect: () => {
         client.subscribe(`/user/${currentUser.id}/queue/messages`, (msg) => {
           const receivedMessage = JSON.parse(msg.body);
@@ -52,7 +52,7 @@ export default function Messages() {
 
   useEffect(() => {
     if (selectedContact) {
-      axios.get(`http://localhost:8080/api/messages/${currentUser.id}/${selectedContact.id}`)
+      axios.get(`https://schedulify-backend-dgce.onrender.com/api/messages/${currentUser.id}/${selectedContact.id}`)
         .then(res => setMessages(res.data))
         .catch(err => console.error(err));
     }
@@ -95,7 +95,6 @@ export default function Messages() {
 
       <div className="flex-1 max-w-7xl w-full mx-auto p-4 flex gap-4 h-[calc(100vh-80px)]">
         
-        {/* Sol Menü (Kişiler) */}
         <div className={`w-full md:w-80 bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-gray-200 dark:border-slate-800 flex flex-col transition-colors ${selectedContact ? 'hidden md:flex' : 'flex'}`}>
           <div className="p-6 pb-4">
             <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4 transition-colors">{t('msg.title')}</h2>
@@ -134,7 +133,6 @@ export default function Messages() {
           </div>
         </div>
 
-        {/* Sağ Menü (Mesajlaşma) */}
         <div className={`flex-1 bg-white dark:bg-slate-900 rounded-[2rem] shadow-sm border border-gray-200 dark:border-slate-800 flex flex-col relative overflow-hidden transition-colors ${!selectedContact ? 'hidden md:flex' : 'flex'}`}>
           <div className="absolute inset-0 z-0 opacity-5 dark:opacity-10 pointer-events-none transition-opacity duration-300">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
