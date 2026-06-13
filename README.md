@@ -1,5 +1,11 @@
 # SchedulifyPro - Sağlık Yönetim Sistemi
 
+## Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-blue?style=for-the-badge)](https://schedulify-client-frontend.vercel.app)
+
+*(Note: The backend is hosted on a free Render tier, so the first request might take 1-2 minutes to wake up the server. Please be patient!)*
+
 Bu proje, hastaların doktorlara kolayca ulaşıp randevu alabileceği, doktorların ise kendi çalışma takvimlerini ve tıbbi notlarını yönetebileceği uçtan uca bir sağlık yönetim sistemidir.
 
 ## Projenin Amacı
